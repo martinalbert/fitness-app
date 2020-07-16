@@ -1,5 +1,3 @@
-import User from '../../entities/User'
-
 /**
  * Abstract Class\
  * Contains abstractions of all functions that communicate with database
@@ -18,7 +16,7 @@ export default abstract class IUserRepo {
      * @param {User} user - new User
      * @returns {Promise<User>} created User
      */
-    abstract async register(user: User): Promise<User>
+    abstract async register(user: IUser): Promise<IUser>
     /**
      * Function that logs in user which is authenticated
      * @abstract @async @function login
@@ -34,13 +32,13 @@ export default abstract class IUserRepo {
      * @param {string} email - User's email
      * @returns {Promise<User>} currently loged User
      */
-    abstract async getCurrent(id: number, email: string): Promise<User>
+    abstract async getCurrent(id: number, email: string): Promise<IUser>
     /**
      * Function that finds all users
      * @abstract @async @function getAll
      * @returns {Promise<User>} all users
      */
-    abstract async getAll(): Promise<User[]>
+    abstract async getAll(): Promise<IUser[]>
     /**
      * Function that deletes user represented by his ID
      * @abstract @async @function delete
