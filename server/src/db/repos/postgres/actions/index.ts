@@ -1,7 +1,8 @@
 import { QueryTypes } from 'sequelize'
 import sequelize from '../../../sequelize'
-import { UserRepo } from '../../../../db'
+import { UserRepo, ActivityRepo } from '../../../../db'
 import UserModel from '../models/User'
+import ActivityModel from '../models/Activity'
 
 /**
  * Function that finds all users and deletes all theirs endpoints and results.
@@ -9,8 +10,13 @@ import UserModel from '../models/User'
  */
 export const clearDB = async () => {
     const userRepo = new UserRepo()
+    const activityRepo = new ActivityRepo()
     const users = await userRepo.getAll()
     for (const user of users) {
+        const activities = await activityRepo.getAll()
+        for (const activity of activities) {
+            await ActivityModel.destroy(activity)
+        }
         await UserModel.destroy(user)
     }
 }
@@ -50,4 +56,19 @@ export const getLastUserID = async () => {
         { type: QueryTypes.SELECT }
     )
     return userCount[0].count
+}
+
+/**
+ * Helper Function\
+ * Function that gets the largest ID of Activities in database.
+ *
+ * @async @function getLastUserID
+ * @return {number} number of user last ID
+ */
+export const getLastActivityID = async () => {
+    const activityCount = await sequelize.query(
+        'SELECT coalesce(max(id), 0) AS count FROM "activities";',
+        { type: QueryTypes.SELECT }
+    )
+    return activityCount[0].count
 }
