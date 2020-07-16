@@ -37,6 +37,63 @@ interface IUser {
 }
 
 /**
+ * Activity type for Entity Activity
+ */
+type ActivityType = 'jogging' | 'walking' | 'crossfit' | 'workout' | 'yoga'
+
+/**
+ * Interface\
+ * Interface for Entity of Activity
+ *
+ * @interface
+ * @param  {number} id - primary key of db record
+ * @param  {ActivityType} type - activity type
+ * @param  {string} description - (optional) description of activity
+ * @param  {number} duration - duration of activity
+ * @param  {Date} dateTime - date and time when activity was performed
+ * @param  {string} location - (optional) location where activity was performed
+ * @function toObject - function that maps the Activity to object
+ */
+interface IActivity {
+    /**
+     * Primary key of DB record
+     */
+    id: number
+    /**
+     * Activity type
+     */
+    type: ActivityType
+    /**
+     * (optional) Description of activity
+     */
+    description?: string
+    /**
+     * Duration of activity
+     */
+    duration: number
+    /**
+     * Date and time when activity was performed
+     */
+    dateTime: Date
+    /**
+     * (optional) Location where activity was performed
+     */
+    location?: string
+    /**
+     * User that created this Activity
+     */
+    user: User
+
+    /**
+     * Helper Function \
+     * function that maps the user to bbject
+     * @function toObject
+     * @returns {Object} object with properties of user
+     */
+    toObject(): Object
+}
+
+/**
  * Interface\
  * Interface for Object that is decoded by valid json web token
  *
