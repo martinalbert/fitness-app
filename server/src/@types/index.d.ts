@@ -29,7 +29,7 @@ interface IUser {
 
     /**
      * Helper Function \
-     * function that maps the user to bbject
+     * function that maps the user to object
      * @function toObject
      * @returns {Object} object with properties of user
      */
@@ -86,7 +86,7 @@ interface IActivity {
 
     /**
      * Helper Function \
-     * function that maps the user to bbject
+     * function that maps the user to object
      * @function toObject
      * @returns {Object} object with properties of user
      */
