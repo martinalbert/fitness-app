@@ -33,7 +33,14 @@ interface IUser {
      * @function toObject
      * @returns {Object} object with properties of user
      */
-    toObject(): Object
+    toObject(): UserObject
+}
+
+interface UserObject {
+    id?: number
+    userName?: string
+    email: string
+    password: string
 }
 
 /**
@@ -90,7 +97,17 @@ interface IActivity {
      * @function toObject
      * @returns {Object} object with properties of user
      */
-    toObject(): Object
+    toObject(): ActivityObject
+}
+
+interface ActivityObject {
+    id?: number
+    type: ActivityType
+    description?: string
+    duration: number
+    dateTime: Date
+    location?: string
+    user: number
 }
 
 /**
@@ -107,11 +124,12 @@ interface jwtObject {
     /**
      * id of encoded User
      */
-    id: number
+    id?: number
     /**
      * email of encoded User
      */
-    email: string
+    email?: string
+    user?: string
     /**
      * issued at - time at which the JWT was created
      */
