@@ -45,7 +45,7 @@ export default class Activity implements IActivity {
      * @function toObject
      * @returns {Object} object with properties of user
      */
-    toObject(): Object {
+    toObject(): ActivityObject {
         return {
             id: this.id,
             type: this.type,
